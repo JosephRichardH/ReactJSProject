@@ -17,6 +17,7 @@ import GalleryFooter from './GalleryFooter'
 import ContactKiri from './ContactKiri'
 import ContactKanan from './ContactKanan'
 import ListNews from './ListNews';
+import CobaBaru from './cobabaru';
 
 
 class App extends Component {
@@ -47,7 +48,8 @@ class App extends Component {
 //  </div>
 //  </body>
 
-        <ListNews />
+  <ListNews />
+//    <CobaBaru />
     );
   }
 }
