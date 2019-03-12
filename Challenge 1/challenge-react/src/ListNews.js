@@ -18,7 +18,7 @@ const urlHeadLine1 = baseUrl + "/everything?q=Trade War&" + "apikey=" + apiKey;
 
 const az = null;
 const ITEM_PER_PAGE = 5
-const SHOW_ITEM_PAGE = 1
+const SHOW_ITEM_PAGE = 7
 
 class ListNews extends Component {
 
@@ -99,13 +99,6 @@ class ListNews extends Component {
         return tabel;
     }
 
-
-
-
-
-
-
-
     render() {
     return (
     <body>
@@ -129,25 +122,26 @@ class ListNews extends Component {
                     <input type="name" class = "inputformnama" placeholder="Search something ...    "/>
                 </form>
             </div>
-            <div class = "row">
-                <div class="col-md-4">
+        </div>
+        <div class = "container contentcontent">
+        <div class = "row">
+            <div class="col-md-4">
                 <table style={{width :'100%'}}>
-            <tr>
-                <td class="beritadisplay">Judul</td>
-            </tr>
-            {this.top5}
-        </table>
-                </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <table style={{width :'100%'}}>
-                        {this.bigtop5}
-                        </table>
-                    </div>
-                    
+                <tr>
+                    <td class="beritadisplay">Judul</td>
+                </tr>
+                {this.top5}
+                </table>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <table style={{width :'100%'}}>
+                    {this.bigtop5}
+                    </table>
                 </div>
                 
-            </div>
+            </div>        
+        </div>
         </div>
         <footer>
         <div class="container">
@@ -172,6 +166,7 @@ class ListNews extends Component {
                 </div>
             </div>
         </div>
+        
         </footer>
     </body>
     );
