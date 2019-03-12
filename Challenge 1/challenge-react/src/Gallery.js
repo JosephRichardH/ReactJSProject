@@ -22,18 +22,7 @@ class Gallery extends Component {
   render() {
     return (
 <body>
-        <header>
-            <img class="logo-head" src={logo}/>
-            <nav>
-                <ul>
-                    <a href="about.html"><li class="listnav">ABOUT</li></a>
-                    <a href="gallery.html" id="nav-color"><li class="listnav">GALLERY</li></a>
-                    <a href="contact.html"><li class="listnav">CONTACT</li></a>
-                    <a href="ListNews.html"><li class="listnav">News</li></a>
-
-                </ul>
-            </nav>
-        </header>
+        
         <img class="img-fluid icon-gallery" src={icongallery}/>
         <span class="gallery">GALLERY</span>
         <hr/>

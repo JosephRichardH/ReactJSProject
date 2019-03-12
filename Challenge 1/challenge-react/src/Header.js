@@ -16,7 +16,7 @@ class HomeHeader extends Component {
         <img class="logo-head" src={logo}/>
         <nav>
             <ul>
-                <a href="about.html" id="nav-color"><li class="listnav">ABOUT</li></a>
+                <a href="about.html"><li class="listnav">ABOUT</li></a>
                 <a href="gallery.html"><li class="listnav">GALLERY</li></a>
                 <a href="contact.html"><li class="listnav">CONTACT</li></a>
                 <a href="ListNews.html"><li class="listnav">News</li></a>                    

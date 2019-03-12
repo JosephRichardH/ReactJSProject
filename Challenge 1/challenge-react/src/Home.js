@@ -13,16 +13,6 @@ class Home extends Component {
   render() {
     return (
 <body>
-    <header>
-        <img class="logo-head" src={logo}/>
-        <nav>
-            <ul>
-                <a href="about.html" id="nav-color"><li class="listnav">ABOUT</li></a>
-                <a href="gallery.html"><li class="listnav">GALLERY</li></a>
-                <a href="contact.html"><li class="listnav">CONTACT</li></a>
-            </ul>
-        </nav>
-    </header>
     <div class="banner">
         <img class="profile" src={jokowi}/>
         <p class="nama">Joko Widodo</p>  

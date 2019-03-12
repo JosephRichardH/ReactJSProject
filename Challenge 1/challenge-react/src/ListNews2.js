@@ -16,8 +16,8 @@ import axios from "axios";
 import Search from './Components/Search';
 const apiKey="7f484ed4b9c942d9b917851f4bea7545";
 const baseUrl = "https://newsapi.org/v2";
-const urlHeadLine = baseUrl + "/top-headlines?country=id&" + "apikey=" + apiKey;
-const urlHeadLine1 = baseUrl + "/everything?q=Trade War&" + "apikey=" + apiKey;
+const urlHeadLine = baseUrl + "/top-headlines?country=id&pageSize=5&" + "apikey=" + apiKey;
+const urlHeadLine1 = baseUrl + "/everything?q=Trade War&pageSize=5&" + "apikey=" + apiKey;
 
 const az = null;
 const ITEM_PER_PAGE = 5
@@ -61,8 +61,7 @@ class ListNews extends Component {
     
     get top5(){
         const {listNews, username, isLogin}= this.state
-        const data_potongan = listNews.slice(0,ITEM_PER_PAGE)
-        const stories= data_potongan
+        const stories= listNews
     
         const tabel=stories.map((story, urut) =>
         <div>
@@ -82,8 +81,7 @@ class ListNews extends Component {
 
     get bigtop5(){
         const {listNews1, username, isLogin}= this.state
-        const data_potongan = listNews1.slice(0,SHOW_ITEM_PAGE)
-        const stories= data_potongan
+        const stories= listNews1
     
         const tabel=stories.map((story, urut) =>
         <div>
@@ -123,7 +121,7 @@ class ListNews extends Component {
         if (keyword.length > 3){
             try{
                 const response = await axios.get(
-                    baseUrl + "/everything?q="+keyword+"&" + "apikey=" + apiKey
+                    baseUrl + "/everything?q="+keyword+"&pagesize=5&" + "apikey=" + apiKey
                 );
                 console.log(response);
                 self.setState({listNews1:response.data.articles})}
@@ -133,25 +131,6 @@ class ListNews extends Component {
             }
         };
     }; 
-
-    sports = inputan => {
-        this.searchNews('sports')
-    }
-    DonaldTrump = inputan => {
-        this.searchNews('DonaldTrump')
-    }
-    Jokowi = inputan => {
-        this.searchNews('Jokowi')
-    }
-    Prabowo = inputan => {
-        this.searchNews('Prabowo')
-    }
-    pemilu = inputan => {
-        this.searchNews('pemilu')
-    }
-    China = inputan => {
-        this.searchNews('China')
-    }
 
     render() {
         // const is_login = JSON.parse(localStorage.getItem("is_login"));
@@ -180,15 +159,6 @@ class ListNews extends Component {
                     />
             </div>
         </div>
-        <header>
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Sports</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Donald Trump</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Jokowi</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Prabowo</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>pemilu</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>China</a> 
-        </header>
-
         <div class = "container contentcontent">
         <div class = "row">
             <div class="col-md-4">

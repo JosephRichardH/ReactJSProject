@@ -5,10 +5,10 @@ import Home from './Home'
 import Gallery from './Gallery'
 import Contact from './Contact'
 
-import HomeHeader from './HomeHeader'
+import HomeHeader from './Header'
 import HomeBanner from './HomeBanner'
 import HomeTable from './HomeTable'
-import HomeFooter from './HomeFooter'
+import HomeFooter from './Footer'
 
 import GalleryHeader from './GalleryHeader'
 import GalleryContent from './GalleryContent'
@@ -29,16 +29,16 @@ class App extends Component {
 //        <Contact /> 
 //        </div>
 //  <body>
-//      <HomeHeader />
+//      <Header />
 //      <HomeBanner />
 //      <HomeTable />
-//      <HomeFooter />
+//      <Footer />
 //  </body>
 //
 //  <body>
-//  <GalleryHeader />
+//  <Header />
 //  <GalleryContent />
-//  <GalleryFooter />
+//  <Footer />
 //  </body>
 //
 //  <body>
