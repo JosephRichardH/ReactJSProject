@@ -133,11 +133,11 @@ class ListNews extends Component {
     }; 
 
     render() {
-        // const is_login = JSON.parse(localStorage.getItem("is_login"));
+        // const islogin = JSON.parse(localStorage.getItem("islogin"));
         // const email = localStorage.getItem("email")
-        // console.log ("is_login",is_login);
+        // console.log ("islogin",islogin);
     
-        // if (is_login ===null){
+        // if (islogin ===null){
         //     return <Redirect to={{pathname: "/signin" }} />;
         // } 
         // else {

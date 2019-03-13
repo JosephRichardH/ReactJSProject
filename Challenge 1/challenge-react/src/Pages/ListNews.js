@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import './assets/css/main-news.css';
+import '../assets/css/main-news.css';
 // import './assets/js/bootstrap.min.js';
-import './assets/css/bootstrap.min.css';
-import logo from './assets/logo/logo-alterra-academy@2x.png';
-import foto from "./assets/ico/ico-gallery@2x.png"
-import { Redirect } from "react-router-dom";
+import '../assets/css/bootstrap.min.css';
+import foto from "../assets/ico/ico-gallery@2x.png"
+import { withRouter, Redirect } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
-import plain from "./assets/logo/logo-alterra-academy-plain@2x.png";
-import facebook from "./assets/ico/ico-facebook@2x.png";
-import twitter from "./assets/ico/ico-twitter@2x.png";
-import instagram from "./assets/ico/ico-instagram@2x.png";
-import { Link } from "react-router-dom"
+
+import facebook from "../assets/ico/ico-facebook@2x.png";
+import twitter from "../assets/ico/ico-twitter@2x.png";
+import instagram from "../assets/ico/ico-instagram@2x.png";
 
 import axios from "axios";
-import Search from './Components/Search';
+import Search from '../Components/Search';
 const apiKey="7f484ed4b9c942d9b917851f4bea7545";
 const baseUrl = "https://newsapi.org/v2";
-const urlHeadLine = baseUrl + "/top-headlines?country=id&" + "apikey=" + apiKey;
-const urlHeadLine1 = baseUrl + "/everything?q=Trade War&" + "apikey=" + apiKey;
+const urlHeadLine = baseUrl + "/top-headlines?country=id&apikey=" + apiKey;
+const urlHeadLine1 = baseUrl + "/everything?q=Trade War&apikey=" + apiKey;
 
-const az = null;
 const ITEM_PER_PAGE = 5
 const SHOW_ITEM_PAGE = 5
 
@@ -37,31 +36,32 @@ class ListNews extends Component {
     }
 
     componentDidMount = () => { 
-    console.log(urlHeadLine)
-    const self = this;
-    axios
-        .get(urlHeadLine)
-        .then(function(response){
-            self.setState({listNews : response.data.articles});
-            console.log(response.data);
-        })
-        .catch(function(error){
-            console.log(error);
-        })
-    axios        
-        .get(urlHeadLine1)
-        .then(function(response){
-            self.setState({listNews1 : response.data.articles});
-            console.log(response.data);
-        })
-        .catch(function(error){
-            console.log(error);
-        });
+    // console.log(urlHeadLine)
+    // const self = this;
+    this.props.getUrlNews()
+    // axios
+    //     .get(urlHeadLine)
+    //     .then(function(response){
+    //         self.setState({listNews : response.data.articles});
+    //         console.log(response.data);
+    //     })
+    //     .catch(function(error){
+    //         console.log(error);
+    //     })
+    // axios        
+    //     .get(urlHeadLine1)
+    //     .then(function(response){
+    //         self.setState({listNews1 : response.data.articles});
+    //         console.log(response.data);
+    //     })
+    //     .catch(function(error){
+    //         console.log(error);
+    //     });
     }
     
     get top5(){
-        const {listNews, username, isLogin}= this.state
-        const data_potongan = listNews.slice(0,ITEM_PER_PAGE)
+        // const {listNews, username, isLogin}= this.state
+        const data_potongan = this.props.listNews.slice(0,ITEM_PER_PAGE)
         const stories= data_potongan
     
         const tabel=stories.map((story, urut) =>
@@ -81,15 +81,15 @@ class ListNews extends Component {
     }
 
     get bigtop5(){
-        const {listNews1, username, isLogin}= this.state
-        const data_potongan = listNews1.slice(0,SHOW_ITEM_PAGE)
+        // const {listNews1, username, isLogin}= this.state
+        const data_potongan = this.props.listNews1.slice(0,SHOW_ITEM_PAGE)
         const stories= data_potongan
     
         const tabel=stories.map((story, urut) =>
         <div>
             
             <tr>
-                <td class="displaygambar"><img src={story.urlToImage}/></td>
+                <td className="displaygambar"><img src={story.urlToImage}/></td>
             </tr>
             <tr>
                 <td class="displayjudul">{story.title}</td>
@@ -112,57 +112,54 @@ class ListNews extends Component {
                 search:value
             },
             () => {
-                this.searchNews(value);
+                this.props.searchNews(value);
             }
         );
     };
 
-    searchNews = async keyword => {
-        console.log("searchNews",keyword);
-        const self = this;
-        if (keyword.length > 3){
-            try{
-                const response = await axios.get(
-                    baseUrl + "/everything?q="+keyword+"&" + "apikey=" + apiKey
-                );
-                console.log(response);
-                self.setState({listNews1:response.data.articles})}
+    // searchNews = async keyword => {
+    //     console.log("searchNews",keyword);
+    //     const self = this;
+    //     if (keyword.length > 3){
+    //         try{
+    //             const response = await axios.get(
+    //                 baseUrl + "/everything?q="+keyword+"&apikey=" + apiKey
+    //             );
+    //             console.log(response);
+    //             self.setState({listNews1:response.data.articles})}
                 
-                catch(error){
-                    console.log(error);
-            }
-        };
-    }; 
+    //             catch(error){
+    //                 console.log(error);
+    //         }
+    //     };
+    // }; 
 
-    sports = inputan => {
-        this.searchNews('sports')
+    Sports = inputan => {
+        this.props.searchNews('sports')
     }
     DonaldTrump = inputan => {
-        this.searchNews('DonaldTrump')
+        this.props.searchNews('Donald Trump')
+        console.log(this.props.searchNews('Donald Trump'))
     }
     Jokowi = inputan => {
-        this.searchNews('Jokowi')
+        this.props.searchNews('Jokowi')
     }
     Prabowo = inputan => {
-        this.searchNews('Prabowo')
+        this.props.searchNews('Prabowo')
     }
-    pemilu = inputan => {
-        this.searchNews('pemilu')
+    Pemilu = inputan => {
+        this.props.searchNews('pemilu')
     }
     China = inputan => {
-        this.searchNews('China')
+        this.props.searchNews('China')
     }
 
     render() {
-        // const is_login = JSON.parse(localStorage.getItem("is_login"));
-        // const email = localStorage.getItem("email")
-        // console.log ("is_login",is_login);
-    
-        // if (is_login ===null){
-        //     return <Redirect to={{pathname: "/signin" }} />;
-        // } 
-        // else {
-    return (
+        if (!this.props.islogin){
+            // console.log(this.props.islogin)
+            return <Redirect to = {{pathname:'/signin'}} />;
+        } else {
+            return(
     <body>
         <img class="img-fluid icon-gallery" src={foto}/>
         <span class="gallery">NEWS</span>
@@ -181,12 +178,12 @@ class ListNews extends Component {
             </div>
         </div>
         <header>
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Sports</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Donald Trump</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Jokowi</a> 
+            <a href="#" className = "listnav" onClick={() => this.Sports()}>Sports</a> 
+            <a href="#" className = "listnav" onClick={() => this.DonaldTrump()}>Donald Trump</a> 
+            <a href="#" className = "listnav" onClick={() => this.Jokowi()}>Jokowi</a> 
             <a href="#" className = "listnav" onClick={() => this.Prabowo()}>Prabowo</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>pemilu</a> 
-            <a href="#" className = "listnav" onClick={() => this.Prabowo()}>China</a> 
+            <a href="#" className = "listnav" onClick={() => this.Pemilu()}>Pemilu</a> 
+            <a href="#" className = "listnav" onClick={() => this.China()}>China</a> 
         </header>
 
         <div class = "container contentcontent">
@@ -236,8 +233,7 @@ class ListNews extends Component {
         
         </footer>
     </body>
-    );
+            )};
   }
-// }
 }
-export default ListNews;
+export default connect("islogin,username,password,listNews,listNews1",actions) (withRouter(ListNews))

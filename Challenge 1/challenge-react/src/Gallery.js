@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './assets/css/main-gallery.css';
 // import './assets/js/bootstrap.min.js';
 import './assets/css/bootstrap.min.css';
-import logo from './assets/logo/logo-alterra-academy@2x.png';
 import icongallery from "./assets/ico/ico-gallery@2x.png";
 
 import gambar1 from "./assets/img/exp-gallery/jake-allison-1322894-unsplash.jpg";
@@ -21,8 +20,8 @@ import instagram from "./assets/ico/ico-instagram@2x.png";
 class Gallery extends Component {
   render() {
     return (
-<body>
-        
+    
+    <body>   
         <img class="img-fluid icon-gallery" src={icongallery}/>
         <span class="gallery">GALLERY</span>
         <hr/>

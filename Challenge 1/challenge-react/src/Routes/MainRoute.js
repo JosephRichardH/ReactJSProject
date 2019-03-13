@@ -4,8 +4,8 @@ import { Route, Switch } from "react-router-dom"
 import Home from "../Gallery"; 
 import SignIn from "../SignIn"; 
 // import NotMatch from "../Pages/NotMatch"; 
-import News from "../ListNews"; 
-import Profile from "../Home"; 
+import News from "../Pages/ListNews"; 
+import Profile from "../Components/Profile"; 
 
 const MainRoute = () => {
     return(

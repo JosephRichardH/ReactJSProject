@@ -1,27 +1,24 @@
 import React from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect,withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../Store";
 
 const Profile = props => {
-    const is_login = JSON.parse(localStorage.getItem("is_login"));
-    const email = localStorage.getItem("email")
-    console.log ("is_login",is_login);
-
-    if (is_login ===null){
-        return <Redirect to={{pathname: "/signin" }} />;
-    } 
-    else {
+    if (!props.islogin){
+        return <Redirect to = {{pathname:'/signin'}} />;
+    } else {
         return (
-            <section classname = "content">
+            <section className = "content">
             <h1 style = {{ textalign : "center" }}> Profile</h1>
             <p>
-                <label>Email:</label> {email}
+                <label>Email:</label> {props.email}
             </p>
             <p>
-                <label>Full Name:</label> {full_name}
+                <label>Full Name:</label> {props.full_name}
             </p>
             </section>
         );
-    }
-};
+    };
+}
 
-export default Profile;
+export default connect("islogin,email,full_name",actions)(withRouter(Profile));

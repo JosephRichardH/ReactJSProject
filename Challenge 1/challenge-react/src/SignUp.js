@@ -20,7 +20,7 @@ class SignIn extends Component {
             console.log(response.data)
             if (response.data.hasOwnProperty("api_key")) {
                 localStorage.setItem("api_key", response.data.api_key);
-                localStorage.setItem("is_login", true);
+                localStorage.setItem("islogin", true);
                 localStorage.setItem("full_name", response.data.full_name)
                 localStorage.setItem("email", response.data.email)
                 self.props.history.push("/profile");

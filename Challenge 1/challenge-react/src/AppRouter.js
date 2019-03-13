@@ -5,7 +5,8 @@ import Navigation from "./Components/Navigation"
 
 class AppAjax extends Component {
     postSignOut = () => {
-        localStorage.removeItem("is_login");
+        localStorage.setItem("islogin", false);
+        localStorage.clear();
         this.props.history.push("/");
     };
     render () {
